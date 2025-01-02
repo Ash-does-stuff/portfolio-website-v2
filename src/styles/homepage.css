@@ -1,0 +1,33 @@
+.homepage {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* rectangles */
+.rect {
+    width: 150vw;
+    height: 25vh;
+
+    position: absolute;
+    
+    right: -5vw;
+
+    background-color: #eee;
+
+    transform: rotate(-2deg);
+}
+
+.rect.one {
+    top: -20vh;
+}
+.rect.two {
+    bottom: -25vh;
+}
+
+.accent {
+    height: 27vh;
+
+    background-color: var(--accent);
+
+    transform: rotate(-3deg);
+}

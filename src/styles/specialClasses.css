@@ -1,0 +1,416 @@
+:root {
+  --default-anim-duration: 1.5s;
+}
+
+/*
+  Animations
+*/
+@keyframes fade-in {
+  0% {
+  opacity: 0;
+  }
+  20% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  60% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  }
+}
+
+
+
+@keyframes fade-in-bottom {
+  0% {
+  opacity: 0;
+  transform: translateY(10vh);
+  }
+  20% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+@keyframes fade-out-bottom {
+  /*0% {
+  opacity: 1;
+  transform: translateY(0vw);
+  }*/
+  60% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  transform: translateY(10vh);
+  }
+}
+
+
+
+@keyframes fade-in-top {
+  0% {
+  opacity: 0;
+  transform: translateY(-10vh);
+  }
+  20% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+@keyframes fade-out-top {
+  /*0% {
+  opacity: 1;
+  transform: translateY(0vw);
+  }*/
+  60% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  transform: translateY(-10vh);
+  }
+}
+
+
+
+@keyframes fade-in-right {
+  0% {
+  opacity: 0;
+  transform: translateX(-10vw);
+  }
+  20% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+  transform: translateX(0);
+  }
+}
+
+@keyframes fade-out-right {
+  /*0% {
+  opacity: 1;
+  transform: translateX(0vw);
+  }*/
+  60% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  transform: translateX(-10vw);
+  }
+}
+
+
+
+@keyframes fade-in-left {
+  0% {
+  opacity: 0;
+  transform: translateX(10vw);
+  }
+  20% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+  transform: translateX(0);
+  }
+}
+
+@keyframes fade-out-left {
+  /*0% {
+  opacity: 1;
+  transform: translateX(0);
+  }*/
+  60% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  transform: translateX(10vw);
+  }
+}
+
+/*
+  Scroll animations
+  - classes with animations that are assigned when an observer intersects with the element
+  - each animation class name has to be added to the `observedClasses` array in `specialClassHandler.ts`
+*/
+  .animationStart {
+      opacity: 0;
+  }
+  
+  .fadeInBottom {
+      -webkit-animation: fade-in-bottom 1.5s ease-in-out both;
+      animation: fade-in-bottom 1.5s ease-in-out both;
+  }
+  
+  .fadeInTop {
+      -webkit-animation: fade-in-top 1.5s ease-in-out both;
+      animation: fade-in-top 1.5s ease-in-out both;
+  }
+  
+  .fadeInRight {
+      -webkit-animation: fade-in-right 1.5s ease-in-out both;
+      animation: fade-in-right 1.5s ease-in-out both;
+  }
+  
+  .fadeInLeft {
+      -webkit-animation: fade-in-left 1.5s ease-in-out both;
+      animation: fade-in-left 1.5s ease-in-out both;
+  }
+
+
+
+/*
+  ElementSeries:
+  - animates a series of elements (wow)
+  - has to be accompanied by a second class which sets the animation type
+*/
+/*.elementSeries > * {
+  opacity: 0;
+}*/
+
+.elementSeries.absPos > * {
+  position: absolute;
+}
+
+/* Fade in */
+.elementSeries.fadeIn> *:not(.animationStart) {
+  -webkit-animation: fade-in var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+  animation: fade-in var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+}
+
+.elementSeries.fadeIn .stay {
+  -webkit-animation: fade-in var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+  animation: fade-in var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+}
+
+/* From top to bottom */
+.elementSeries.fadeTopToBottom > *:not(.animationStart) {
+  -webkit-animation: fade-in-top var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-bottom var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+  animation: fade-in-top var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-bottom var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+}
+
+.elementSeries.fadeTopToBottom .stay {
+  -webkit-animation: fade-in-top var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+  animation: fade-in-top var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+}
+
+/* From bottom to top */
+.elementSeries.fadeBottomToTop > *:not(.animationStart) {
+  -webkit-animation: fade-in-bottom var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-top var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+  animation: fade-in-bottom var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-top var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+}
+
+.elementSeries.fadeBottomToTop .stay {
+  -webkit-animation: fade-in-bottom var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+  animation: fade-in-bottom var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+}
+
+/* From left to right */
+.elementSeries.fadeLeftToRight > *:not(.animationStart) {
+  -webkit-animation: fade-in-left var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-right var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+  animation: fade-in-left var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-right var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+}
+
+.elementSeries.fadeLeftToRight .stay {
+  -webkit-animation: fade-in-left var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+  animation: fade-in-left var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+}
+
+/* From right to left */
+.elementSeries.fadeRightToLeft > *:not(.animationStart) {
+  -webkit-animation: fade-in-right var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-left var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+  animation: fade-in-right var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both, fade-out-left var(--out-duration, var(--default-anim-duration)) var(--delay-out) ease-in-out both;
+}
+
+.elementSeries.fadeRightToLeft .stay {
+  -webkit-animation: fade-in-right var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+  animation: fade-in-right var(--in-duration, var(--default-anim-duration)) var(--delay-in) ease-in-out both;
+}
+
+
+
+/*
+  Slideshow
+*/
+
+.slideshowPage input {
+  z-index: 5;
+}
+
+/* Fade in */
+.fadeIn-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.fadeIn-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.fadeIn-enter-done {
+  opacity: 1;
+}
+
+.fadeIn-exit {
+  opacity: 1;
+}
+.fadeIn-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+
+  display: none;
+}
+.fadeIn-exit-done {
+  opacity: 0;
+}
+
+/* Slide left to right */ 
+.slide-leftToRight {
+  opacity: 0;
+}
+
+.slide-leftToRight-enter {
+  opacity: 0;
+  transform: translate(-5vw, 0vh);
+
+  display: block;
+}
+.slide-leftToRight-enter-active {
+  opacity: 1;
+  transform: translate(0vw,0vh);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-leftToRight-enter-done {
+  opacity: 1;
+}
+
+.slide-leftToRight-exit {
+  opacity: 1;
+  transform: translate(0vw,0vh);
+}
+.slide-leftToRight-exit-active {
+  opacity: 0;
+  transform: translate(5vw, 0vh);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-leftToRight-exit-done {
+  opacity: 0;
+}
+
+/* Slide right to left */ 
+.slide-rightToLeft {
+  opacity: 0;
+}
+
+.slide-rightToLeft-enter {
+  opacity: 0;
+  transform: translate(5vw, 0vh);
+
+  display: block;
+}
+.slide-rightToLeft-enter-active {
+  opacity: 1;
+  transform: translate(0vw,0vh);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-rightToLeft-enter-done {
+  opacity: 1;
+}
+
+.slide-rightToLeft-exit {
+  opacity: 1;
+  transform: translate(0vw,0vh);
+}
+.slide-rightToLeft-exit-active {
+  opacity: 0;
+  transform: translate(-5vw, 0vh);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-rightToLeft-exit-done {
+  opacity: 0;
+}
+
+/* Slide top to bottom */ 
+.slide-topToBottom {
+  opacity: 0;
+}
+
+.slide-topToBottom-enter {
+  opacity: 0;
+  transform: translate(0vw, -5vh);
+
+  display: block;
+}
+.slide-topToBottom-enter-active {
+  opacity: 1;
+  transform: translate(0vw,0vh);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-topToBottom-enter-done {
+  opacity: 1;
+}
+
+.slide-topToBottom-exit {
+  opacity: 1;
+  transform: translate(0vw,0vh);
+}
+.slide-topToBottom-exit-active {
+  opacity: 0;
+  transform: translate(0vw, 5vh);
+  transition: opacity 300ms, transform 300ms;
+}
+.slide-topToBottom-exit-done {
+  opacity: 0;
+}
+
+/* Slide bottom to top */ 
+.slide-bottomToTop {
+opacity: 0;
+}
+
+.slide-bottomToTop-enter {
+opacity: 0;
+transform: translate(0vw, 5vh);
+
+display: block;
+}
+.slide-bottomToTop-enter-active {
+opacity: 1;
+transform: translate(0vw,0vh);
+transition: opacity 300ms, transform 300ms;
+}
+.slide-bottomToTop-enter-done {
+opacity: 1;
+}
+
+.slide-bottomToTop-exit {
+opacity: 1;
+transform: translate(0vw,0vh);
+}
+.slide-bottomToTop-exit-active {
+opacity: 0;
+transform: translate(0vw, -5vh);
+transition: opacity 300ms, transform 300ms;
+}
+.slide-bottomToTop-exit-done {
+opacity: 0;
+}
